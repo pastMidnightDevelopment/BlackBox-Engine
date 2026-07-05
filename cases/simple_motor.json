@@ -1,0 +1,47 @@
+{
+  "components": [
+    {
+      "id": "battery",
+      "name": "Battery",
+      "type": "power_source"
+    },
+    {
+      "id": "fuse",
+      "name": "Fuse",
+      "type": "fuse"
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "type": "switch"
+    },
+    {
+      "id": "motor",
+      "name": "Motor",
+      "type": "motor"
+    }
+  ],
+  "connections": [
+    {
+      "from": "battery",
+      "to": "fuse",
+      "flow_type": "electrical"
+    },
+    {
+      "from": "fuse",
+      "to": "switch",
+      "flow_type": "electrical"
+    },
+    {
+      "from": "switch",
+      "to": "motor",
+      "flow_type": "electrical"
+    }
+  ],
+  "failures": [
+    {
+      "component_id": "fuse",
+      "failure_type": "blown"
+    }
+  ]
+}
