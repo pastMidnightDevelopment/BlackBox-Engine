@@ -1,7 +1,7 @@
 """
 File: component.py
-Version: 0.2
-Purpose: Defines the basic component model for Black Box.
+Version: 0.3
+Purpose: Defines the basic component model and behavior for Black Box.
 """
 
 
@@ -13,9 +13,16 @@ class Component:
 
         self.powered = False
         self.failed = False
+        self.running = False
 
         self.internal_state = {}
         self.observable_state = []
+
+    def update_behavior(self):
+        if self.component_type == "motor":
+            self.running = self.powered and not self.failed
+        else:
+            self.running = False
 
     def update_observable_state(self):
         self.observable_state = []
@@ -43,15 +50,26 @@ class Component:
                 self.observable_state.append("No electrical power is reaching the switch.")
 
         elif self.component_type == "motor":
-            if self.powered:
-                self.observable_state.append("Electrical power is reaching the motor.")
+            if self.running:
+                self.observable_state.append("Motor is running.")
+            elif self.powered and self.failed:
+                self.observable_state.append(
+                    "Electrical power reaches the motor, but the motor has failed and does not run."
+                )
+            elif self.powered:
+                self.observable_state.append(
+                    "Electrical power reaches the motor, but the motor is not running."
+                )
             else:
-                self.observable_state.append("No electrical power is reaching the motor.")
+                self.observable_state.append(
+                    "Motor is stopped because no electrical power is reaching it."
+                )
 
         else:
             self.observable_state.append("No observable information available.")
 
     def inspect(self):
+        self.update_behavior()
         self.update_observable_state()
 
         return {
@@ -60,5 +78,6 @@ class Component:
             "type": self.component_type,
             "powered": self.powered,
             "failed": self.failed,
+            "running": self.running,
             "observable_state": self.observable_state,
         }
