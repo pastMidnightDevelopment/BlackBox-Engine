@@ -35,6 +35,8 @@ def load_case(file_path):
 
         if component is not None:
             component.failed = True
+            component.failure_type = failure_data.get("failure_type")
+            component.failure_effect = failure_data.get("failure_effect")
 
     for connection_data in case_data["connections"]:
         connection = Connection(

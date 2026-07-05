@@ -13,6 +13,8 @@ class Component:
 
         self.powered = False
         self.failed = False
+        self.failure_type = None
+        self.failure_effect = None
         self.running = False
 
         self.internal_state = {}
@@ -78,6 +80,8 @@ class Component:
             "type": self.component_type,
             "powered": self.powered,
             "failed": self.failed,
+            "failure_type": self.failure_type,
+            "failure_effect": self.failure_effect,
             "running": self.running,
             "observable_state": self.observable_state,
         }
