@@ -12,7 +12,7 @@ from engine.system import System
 from engine.flow_engine import FlowEngine
 
 
-CASE_FILE_PATH = "cases/simple_motor.json"
+CASE_FILE_PATH = "cases/motor_failed.json"
 SOURCE_COMPONENT_ID = "battery"
 
 
