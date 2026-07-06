@@ -42,7 +42,7 @@ class FlowEngine:
 
             next_component.powered = True
 
-            if next_component.failed:
+            if next_component.failure_effect == "blocks_flow":
                 continue
 
             self._propagate_power(next_component.component_id)
