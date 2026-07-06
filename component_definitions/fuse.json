@@ -1,0 +1,9 @@
+{
+  "type": "fuse",
+  "possible_failures": {
+    "blown": {
+      "effect": "blocks_flow",
+      "description": "Fuse has opened the circuit and blocks downstream electrical flow."
+    }
+  }
+}

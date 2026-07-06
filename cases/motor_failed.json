@@ -39,10 +39,9 @@
     }
   ],
   "failures": [
-    {
-      "component_id": "motor",
-      "failure_type": "seized",
-      "failure_effect": "stops_behavior"
-    }
-  ]
+  {
+    "component_id": "motor",
+    "failure_type": "seized"
+  }
+]
 }

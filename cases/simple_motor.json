@@ -39,10 +39,9 @@
     }
   ],
   "failures": [
-    {
-        "component_id": "fuse",
-        "failure_type": "blown",
-        "failure_effect": "blocks_flow"
-    }
+  {
+    "component_id": "fuse",
+    "failure_type": "blown"
+  }
 ]
 }

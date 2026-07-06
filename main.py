@@ -10,15 +10,18 @@ from engine.component import Component
 from engine.connection import Connection
 from engine.system import System
 from engine.flow_engine import FlowEngine
+from engine.component_registry import ComponentRegistry
 
-
-CASE_FILE_PATH = "cases/motor_failed.json"
+CASE_FILE_PATH = "cases/simple_motor.json"
 SOURCE_COMPONENT_ID = "battery"
 
 
 def load_case(file_path):
     with open(file_path, "r", encoding="utf-8") as case_file:
         case_data = json.load(case_file)
+
+    registry = ComponentRegistry()
+    registry.load_definitions()
 
     system = System()
 
@@ -36,7 +39,14 @@ def load_case(file_path):
         if component is not None:
             component.failed = True
             component.failure_type = failure_data.get("failure_type")
-            component.failure_effect = failure_data.get("failure_effect")
+
+            failure_definition = registry.get_failure_definition(
+                component_type=component.component_type,
+                failure_type=component.failure_type,
+            )
+
+            if failure_definition is not None:
+                component.failure_effect = failure_definition.get("effect")
 
     for connection_data in case_data["connections"]:
         connection = Connection(

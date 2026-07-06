@@ -1,0 +1,13 @@
+{
+  "type": "motor",
+  "possible_failures": {
+    "seized": {
+      "effect": "stops_behavior",
+      "description": "Motor receives electrical power but cannot rotate."
+    },
+    "open_winding": {
+      "effect": "stops_behavior",
+      "description": "Motor has an open winding and cannot operate."
+    }
+  }
+}
